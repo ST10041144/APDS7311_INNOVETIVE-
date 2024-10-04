@@ -29,6 +29,7 @@ function Register() {
                 phoneNumber,
                 email,
                 password,
+<<<<<<< HEAD
                 confirmPassword, // Optional; you can remove this line as it's not needed for the API
             });
 
@@ -38,6 +39,16 @@ function Register() {
         } catch (err) {
             if (err.response && err.response.data.errors) {
                 setError(err.response.data.errors.map(e => e.msg).join(', '));  // Show validation errors
+=======
+                confirmPassword,
+            });
+            if (response.status === 201) {
+                navigate('/login');
+            }
+        } catch (err) {
+            if (err.response) {
+                setError(err.response.data.message);
+>>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
             } else {
                 setError('Something went wrong. Please try again.');
             }
@@ -50,6 +61,10 @@ function Register() {
                 <img src="/paysherelogo.jpg" alt="Approved" />
             </div>
             <div className="form-side">
+<<<<<<< HEAD
+=======
+                {/* Updated Navbar with click functionality */}
+>>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
                 <div className="navbar">
                     <button onClick={() => navigate('/')}>Home</button>
                     <button onClick={() => navigate('/about')}>About Us</button>
@@ -114,11 +129,20 @@ function Register() {
                             required 
                         />
                     </div>
+<<<<<<< HEAD
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     <button type="submit" className="register-btn">Register</button>
                 </form>
                 <p className="login-link" onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
                     Already have an account? Login here
+=======
+                    {error && <p style={{color: 'red'}}>{error}</p>}
+                    <button type="submit" className="register-btn">Register</button>
+                </form>
+                {/* Functionality for Login link */}
+                <p className="login-link" onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
+                    Login?
+>>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
                 </p>
             </div>
         </div>
