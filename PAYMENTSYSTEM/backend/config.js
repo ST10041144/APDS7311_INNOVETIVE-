@@ -28,3 +28,13 @@ const httpsServer = https.createServer(credentials, app);
 httpsServer.listen(process.env.HTTPS_PORT || 443, () => {
   console.log(`HTTPS Server running on port ${process.env.HTTPS_PORT || 443}`);
 });
+
+//rate limit vaues
+export const rateLimitConfig = {
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 100, // Default rate limit for users
+  adminMaxRequests: 500, // Higher limit for admins
+  delayAfter: 50, // After 50 requests, slow down
+  delayMs: 500 // Delay per request after threshold
+};
+

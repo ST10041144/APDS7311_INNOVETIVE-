@@ -14,7 +14,6 @@ function Login() {
         setError('');
 
         try {
-<<<<<<< HEAD
             const response = await axios.post("https://localhost:5000/api/auth/login", {
                 email,
                 password,
@@ -25,17 +24,6 @@ function Login() {
         } catch (err) {
             if (err.response && err.response.data.message) {
                 setError(err.response.data.message);  // Show server-provided error message
-=======
-            const response = await axios.post("https://localhost:5000/api/auth/login", { // Use HTTP if HTTPS is not configured
-                email,
-                password,
-            });
-            localStorage.setItem('token', response.data.token);
-            navigate('/protected'); // Navigate to protected page upon successful login
-        } catch (err) {
-            if (err.response) {
-                setError(err.response.data.message);
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
             } else {
                 setError('Something went wrong. Please try again.');
             }
@@ -48,10 +36,6 @@ function Login() {
                 <img src="/paysherelogo.jpg" alt="Approved" />
             </div>
             <div className="form-side">
-<<<<<<< HEAD
-=======
-                {/* Updated Navbar with click functionality */}
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
                 <div className="navbar">
                     <button onClick={() => navigate('/')}>Home</button>
                     <button onClick={() => navigate('/about')}>About Us</button>
@@ -80,16 +64,9 @@ function Login() {
                             required
                         />
                     </div>
-<<<<<<< HEAD
                     {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
                     <button className="login-btn" type="submit">Login</button>
                 </form>
-=======
-                    {error && <p className="error-message">{error}</p>}
-                    <button className="login-btn" type="submit">Login</button>
-                </form>
-                {/* Functionality for Register link */}
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
                 <p className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}>
                     Don't have an account? Register here
                 </p>

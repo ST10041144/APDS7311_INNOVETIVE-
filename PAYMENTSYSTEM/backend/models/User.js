@@ -1,9 +1,5 @@
 import mongoose from 'mongoose';
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -27,33 +23,21 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-<<<<<<< HEAD
-        lowercase: true,  // Normalize email to lowercase
-        match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Invalid email address'],
-=======
         match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Invalid email address']
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
     },
     password: {
         type: String,
         required: true,
     },
-<<<<<<< HEAD
-=======
 
     confirmPassword: {
         type: String,
         required: true,
     },
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940
     createdAt: {
         type: Date,
         default: Date.now,
     },
 });
 
-<<<<<<< HEAD
 export default mongoose.model('User', userSchema);
-=======
-export default mongoose.model('User', userSchema);
->>>>>>> 25c281919ede309ab0f132a750c44d0495c24940

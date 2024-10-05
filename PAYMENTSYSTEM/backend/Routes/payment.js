@@ -1,11 +1,15 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import validatePayment from '../middleware/paymentValidationMiddleware.js'; // Ensure this points to the correct middleware
+import { paymentRateLimiter, speedLimiter } from '../middleware/rateLimitMiddleware.js';
 import Payment from '../models/Payment.js';
 
 
 
 const router = express.Router();
+
+// Apply the rate limiter and speed limiter to sensitive routes
+router.post('/pay', paymentRateLimiter, speedLimiter, validatePayment);
 
 // Initiate a payment
 router.post(
