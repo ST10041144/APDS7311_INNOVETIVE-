@@ -1,0 +1,106 @@
+.login-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.image-side {
+    width: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-side img {
+    max-width: 70%;
+    border-radius: 10px;
+}
+
+.form-side {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.navbar button {
+    background-color: #5f5cf8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar button:hover {
+    background-color: #4b4add;
+}
+
+h2 {
+    color: #5f5cf8;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #5f5cf8;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-btn:hover {
+    background-color: #4b4add;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.register-link {
+    margin-top: 15px;
+    color: #5f5cf8;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .image-side,
+    .form-side {
+        width: 100%;
+    }
+}
