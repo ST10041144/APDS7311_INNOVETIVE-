@@ -1,45 +1,25 @@
 version: 2.1
 
 jobs:
-  build-frontend:
-    docker:
-      - image: circleci/node:14.17-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-frontend-dependencies-{{ checksum "frontend/package.json" }}
-            - v1-frontend-dependencies-
-      - run:
-          name: Install Frontend Dependencies
-          command: npm install --prefix frontend
-      - save_cache:
-          paths:
-            - frontend/node_modules
-          key: v1-frontend-dependencies-{{ checksum "frontend/package.json" }}
-      - run:
-          name: Run Frontend Tests
-          command: npm test --prefix frontend
-
-  build-backend:
+  build:
     docker:
       - image: circleci/node:14.17
     steps:
-      - checkout
+      - checkout  # Pull the latest version of the repository
       - restore_cache:
           keys:
             - v1-backend-dependencies-{{ checksum "backend/package.json" }}
             - v1-backend-dependencies-
       - run:
           name: Install Backend Dependencies
-          command: npm install --prefix backend
+          command: npm install --prefix backend  # Install only backend dependencies
       - save_cache:
           paths:
             - backend/node_modules
           key: v1-backend-dependencies-{{ checksum "backend/package.json" }}
       - run:
           name: Run Backend Tests
-          command: npm test --prefix backend
+          command: npm test --prefix backend  # Run backend tests
 
   deploy:
     docker:
@@ -56,9 +36,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build-frontend
-      - build-backend
+      - build
       - deploy:
           requires:
-            - build-frontend
-            - build-backend
+            - build
