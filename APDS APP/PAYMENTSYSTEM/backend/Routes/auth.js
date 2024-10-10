@@ -25,17 +25,22 @@ router.post(
     speedLimiter,       // Apply speed limiting to registration route
     [
         // Whitelist and validate inputs
-        check('firstName')
+        // Code Attribution
+        // This code was referenced from StackOverFlow 
+        // filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
+        // Author name StackOverFlow 
+        // filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
+        check('fullName')
             .trim()
-            .isAlpha().withMessage('First name must contain only letters')
-            .isLength({ min: 2 }).withMessage('First name must be at least 2 characters'),
-        check('lastName')
+            .matches(/^[a-zA-Z\s]+$/).withMessage('Full name must contain only letters and spaces')
+            .isLength({ min: 2 }).withMessage('Full name must be at least 2 characters'),
+        check('idNumber')
             .trim()
-            .isAlpha().withMessage('Last name must contain only letters')
-            .isLength({ min: 2 }).withMessage('Last name must be at least 2 characters'),
-        check('phoneNumber')
+            .isNumeric().withMessage('ID number must contain only numbers')
+            .isLength({ min: 12 }).withMessage('ID number must be at least 12 digits'),
+        check('accountNumber')
             .trim()
-            .isMobilePhone().withMessage('Invalid phone number'),
+            .isLength({ min: 10 }).withMessage('Account number must be at least 10 characters'),
         check('email')
             .trim()
             .isEmail().withMessage('Invalid email format'),
@@ -54,7 +59,7 @@ router.post(
         }
 
         try {
-            const { firstName, lastName, phoneNumber, email, password, confirmPassword } = req.body;
+            const { fullName, idNumber, accountNumber, email, password, confirmPassword } = req.body;
 
             // Check if the email already exists
             const existingUser = await User.findOne({ email });
@@ -66,10 +71,15 @@ router.post(
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Create a new user with the additional fields
+            // Code Attribution 
+            // This code was referenced from Medium 
+            // How to hash password in React App, before sending it to the API | by JonathanSanchez.Dev | Boca Code | Medium
+            // Author name JonathanSanchez
+            // https://medium.com/@jonathans199?source=post_page-----6e10a06f0a8e--------------------------------
             const newUser = new User({
-                firstName,
-                lastName,
-                phoneNumber,
+                fullName,
+                idNumber,
+                accountNumber,
                 email,
                 password: hashedPassword,
                 confirmPassword : hashedPassword
@@ -119,3 +129,16 @@ router.post(
 );
 
 export default router;
+
+
+// Code Attribution
+// This code was referened from Dev Community
+// Data Encryption: Securing Data at Rest and in Transit with Encryption Technologies - DEV Community 
+// Author name Jatin 
+//https://dev.to/j471n
+
+// Code Attribution 
+// This code was referenced from Practical devsecops
+// What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com) 
+// Author name Devscopes 
+//What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com)

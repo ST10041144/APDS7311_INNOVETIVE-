@@ -63,9 +63,7 @@ const Dashboard = () => {
 
             <div className="action-cards">
                 <PayNow onPaymentSuccess={addTransaction} userEmail={userEmail} /> {/* Pass userEmail */}
-                <div className="card" onClick={() => window.location.href = '/viewtransactions'}>
-                    <h2>View Transactions</h2>
-                </div>
+            
             </div>
 
             <div className="recent-transactions">

@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import '../../Register.css'; // Assuming you have a CSS file for styles
 
 function Register() {
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
-    const [phoneNumber, setPhoneNumber] = React.useState('');
+    const [fullName, setFullName] = React.useState('');
+    const [idNumber, setIdNumber] = React.useState('');
+    const [accountNumber, setAccountNumber] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -24,9 +24,9 @@ function Register() {
 
         try {
             const response = await axios.post("/api/auth/register", {
-                firstName,
-                lastName,
-                phoneNumber,
+                fullName,
+                idNumber,
+                accountNumber,
                 email,
                 password,
                 confirmPassword, // Optional; you can remove this line as it's not needed for the API
@@ -63,27 +63,27 @@ function Register() {
                     <div className="form-group">
                         <input 
                             type="text" 
-                            placeholder="First Name" 
-                            value={firstName} 
-                            onChange={(e) => setFirstName(e.target.value)} 
+                            placeholder="Full Name" 
+                            value={fullName} 
+                            onChange={(e) => setFullName(e.target.value)} 
                             required 
                         />
                     </div>
                     <div className="form-group">
                         <input 
                             type="text" 
-                            placeholder="Last Name" 
-                            value={lastName} 
-                            onChange={(e) => setLastName(e.target.value)} 
+                            placeholder="ID Number" 
+                            value={idNumber} 
+                            onChange={(e) => setIdNumber(e.target.value)} 
                             required 
                         />
                     </div>
                     <div className="form-group">
                         <input 
                             type="text" 
-                            placeholder="Phone Number" 
-                            value={phoneNumber} 
-                            onChange={(e) => setPhoneNumber(e.target.value)} 
+                            placeholder="Account Number" 
+                            value={accountNumber} 
+                            onChange={(e) => setAccountNumber(e.target.value)} 
                             required 
                         />
                     </div>
@@ -126,3 +126,31 @@ function Register() {
 }
 
 export default Register;
+
+
+// Code Attribution 
+// This code was referenced from Medium 
+// How to hash password in React App, before sending it to the API | by JonathanSanchez.Dev | Boca Code | Medium
+// Author name JonathanSanchez
+// https://medium.com/@jonathans199?source=post_page-----6e10a06f0a8e--------------------------------
+
+
+// Code Attribution
+// This code was referenced from StackOverFlow 
+// filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
+// Author name StackOverFlow 
+// filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
+
+
+
+// Code Attribution
+// This code was referened from Dev Community
+// Data Encryption: Securing Data at Rest and in Transit with Encryption Technologies - DEV Community 
+// Author name Jatin 
+//https://dev.to/j471n
+
+// Code Attribution 
+// This code was referenced from Practical devsecops
+// What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com) 
+// Author name Devscopes 
+//What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com)
