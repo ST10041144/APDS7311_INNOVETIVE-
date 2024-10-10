@@ -8,18 +8,18 @@ jobs:
       - checkout  # Pull the latest version of the repository
       - restore_cache:
           keys:
-            - v1-backend-dependencies-{{ checksum "backend/package.json" }}
+            - v1-backend-dependencies-{{ checksum "APDS APP/PAYMENTSYSTEM/backend/package.json" }}
             - v1-backend-dependencies-
       - run:
           name: Install Backend Dependencies
-          command: npm install --prefix backend  # Install only backend dependencies
+          command: npm install --prefix "APDS APP/PAYMENTSYSTEM/backend"  # Install only backend dependencies
       - save_cache:
           paths:
-            - backend/node_modules
-          key: v1-backend-dependencies-{{ checksum "backend/package.json" }}
+            - "APDS APP/PAYMENTSYSTEM/backend/node_modules"
+          key: v1-backend-dependencies-{{ checksum "APDS APP/PAYMENTSYSTEM/backend/package.json" }}
       - run:
           name: Run Backend Tests
-          command: npm test --prefix backend  # Run backend tests
+          command: npm test --prefix "APDS APP/PAYMENTSYSTEM/backend"  # Run backend tests
 
   deploy:
     docker:
