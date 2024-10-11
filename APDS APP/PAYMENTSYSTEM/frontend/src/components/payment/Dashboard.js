@@ -37,13 +37,15 @@ const Dashboard = () => {
     const addTransaction = (amount, accountNumber, currency) => {
         const newTransaction = {
             recipient: userEmail,
-            amount: `${amount} ${currency}`, 
+            amount: `${amount} ${currency}`,
             accountNumber,
             status: 'Pending',
+            createdAt: new Date().toISOString(),  // Set the current date and time
         };
     
         setRecentTransactions((prevTransactions) => [newTransaction, ...prevTransactions]);
     };
+    
     
 
     return (
