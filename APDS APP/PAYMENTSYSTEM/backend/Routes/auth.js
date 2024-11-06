@@ -6,6 +6,9 @@ import { validatePaymentInput } from '../middleware/paymentValidationMiddleware.
 import { check, validationResult } from 'express-validator';
 import { paymentRateLimiter, speedLimiter } from '../middleware/rateLimitMiddleware.js';
 import { ensureSSL } from '../middleware/sslMiddleware.js';
+import users from '../config.js'; 
+
+
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -96,37 +99,31 @@ router.post(
 );
 
 // Login Route with whitelisting
-router.post(
-    '/login',
-    paymentRateLimiter, // Apply rate limiting to login route
-    speedLimiter,       // Apply speed limiting to login route
-    async (req, res) => {
-        const { email, password } = req.body;
-        
-        try {
-            // Find user by email
-            const user = await User.findOne({ email });
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
-            }
 
-            // Compare password
-            const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-                return res.status(401).json({ message: 'Invalid password' });
-            }
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
-            // Generate JWT token (added for improved security)
-            const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-            // Proceed with successful login
-            res.status(200).json({ message: 'Login successful', token });
-        } catch (error) {
-            console.error('Login error:', error);
-            res.status(500).json({ message: 'Something went wrong. Please try again.' });
+    try {
+        // Find user in the predefined list
+        const user = users.find(user => user.email === email);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
         }
+
+        // Compare password with the hashed password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ message: 'Login successful', token });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Something went wrong. Please try again.' });
     }
-);
+});
 
 export default router;
 
