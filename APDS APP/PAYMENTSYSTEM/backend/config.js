@@ -43,13 +43,13 @@ export const rateLimitConfig = {
 //const bcrypt = require('bcrypt');
 
 // Replace with securely hashed passwords for each user
-const users = [
-    { email: "Test17890@gmail.com", password: "$2b$10$CohfhKlukDHTy3SgcKMOjOtXJXnIedRzVTdJP/cTGJq0DepmmT5F2" }, //password is Test123 
-    { email: "TestingStatic@gmail.com", password: "$2b$10$6J2zjt2uRr/3CQPkL7piLOOdXXwlvFwcSAhsZkwz/TMIQNBKml8O2" }, //password is TestStatic
-    { email: "WeWinning@gmail.com", password: "$2b$10$h0RZuqY76ugdr0.rpKX2e.EbT9zb58R8WiLTvqnr264S03U0GkXI6" }, //password is Winning123
-    // Add more predefined users as needed
-];
+// const users = [
+//     { email: "Test17890@gmail.com", password: "$2b$10$CohfhKlukDHTy3SgcKMOjOtXJXnIedRzVTdJP/cTGJq0DepmmT5F2" }, //password is Test123 
+//     { email: "TestingStatic@gmail.com", password: "$2b$10$6J2zjt2uRr/3CQPkL7piLOOdXXwlvFwcSAhsZkwz/TMIQNBKml8O2" }, //password is TestStatic
+//     { email: "WeWinning@gmail.com", password: "$2b$10$h0RZuqY76ugdr0.rpKX2e.EbT9zb58R8WiLTvqnr264S03U0GkXI6" }, //password is Winning123
+//     // Add more predefined users as needed
+// ];
 
-export default users;
+// export default users;
 
 
