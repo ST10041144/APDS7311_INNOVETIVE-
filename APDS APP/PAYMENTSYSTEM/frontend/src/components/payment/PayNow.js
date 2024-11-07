@@ -28,8 +28,8 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
         }
 
         try {
-            
-            await axios.post("/api/payment/payment", {
+            // Save transaction to backend for pending review
+            const response = await axios.post("/api/payment/payment", {
                 amount,
                 currency,
                 provider, 
@@ -38,18 +38,17 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
                 userEmail, 
             });
 
-            onPaymentSuccess(amount, accountNumber, currency); 
-            setSuccess('Payment has been made successfully!');
-
-            setTimeout(() => {
-                navigate('/dashboard');
-            }, 2000);
-        } catch (err) {
-            if (err.response && err.response.data.message) {
-                setError(err.response.data.message);
-            } else {
-                setError('Something went wrong. Please try again.');
+            if (response.status === 201) {
+                onPaymentSuccess(amount, accountNumber, currency); 
+                setSuccess('Payment has been made successfully!');
+                
+                // Redirect to dashboard after short delay
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
             }
+        } catch (err) {
+            setError(err.response?.data?.message || 'Something went wrong. Please try again.');
         }
     };
 
@@ -103,9 +102,6 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
 };
 
 export default PayNow;
-
-
-
 
 // Code Attribution 
 // This code was referenced from Medium 

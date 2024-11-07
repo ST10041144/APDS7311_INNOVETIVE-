@@ -1,0 +1,12 @@
+{
+  "name": "apds7311_innovetive-",
+  "version": "1.0.0",
+  "description": "INNOVENTIVE OFFICIAL REPO FOR APDS7311",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -17,11 +17,11 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-  "start": "cross-env HTTPS=true react-scripts start",
-  "build": "react-app-rewired build",
-  "test": "react-app-rewired test",
-  "eject": "react-scripts eject"
-},
+    "start": "cross-env HTTPS=true react-scripts start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

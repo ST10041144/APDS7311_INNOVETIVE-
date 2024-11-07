@@ -6,6 +6,9 @@ import Register from './components/auth/Register';
 import Navbar from './components/navbar';
 import Dashboard from './components/payment/Dashboard';
 import PayNow from './components/payment/PayNow';
+import EmployeeDashboard from './EmployeeDashboard';
+import PendingTransactions from './PendingTransaction';
+
 import './App.css';
 
 function App() {
@@ -19,6 +22,8 @@ function App() {
       <Route path="/register" element={<Register />}/>
       <Route path="/dashboard" element={<Dashboard />}/>
       <Route path="/payNow" element={<PayNow />}/>
+      <Route path="/employeeDash" element={<EmployeeDashboard />}/>
+      <Route path="/pending" element={<PendingTransactions />}/>
       <Route path="/protected" element={<ProtectPage />}/>
         </Routes>
       </div>
