@@ -43,7 +43,6 @@ function Login() {
                     <button onClick={() => navigate('/')}>Home</button>
                     <button onClick={() => navigate('/about')}>About Us</button>
                     <button onClick={() => navigate('/contact')}>Contact</button>
-                    <button onClick={() => navigate('/register')}>Register</button>
                     <button onClick={() => navigate('/login')}>Login</button>
                     <button onClick={() => navigate('/protected')}>Protected</button>
                 </div>

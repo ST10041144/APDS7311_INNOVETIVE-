@@ -6,6 +6,9 @@ import { validatePaymentInput } from '../middleware/paymentValidationMiddleware.
 import { check, validationResult } from 'express-validator';
 import { paymentRateLimiter, speedLimiter } from '../middleware/rateLimitMiddleware.js';
 import { ensureSSL } from '../middleware/sslMiddleware.js';
+// import users from '../config.js'; 
+
+
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -96,6 +99,8 @@ router.post(
 );
 
 // Login Route with whitelisting
+
+// Login Route with whitelisting
 router.post(
     '/login',
     paymentRateLimiter, // Apply rate limiting to login route
@@ -127,6 +132,7 @@ router.post(
         }
     }
 );
+
 
 export default router;
 
