@@ -53,7 +53,7 @@ const Dashboard = () => {
             <div className="top-nav">
                 <img src="/paysherelogo.jpg" alt="PayShere Logo" className="logo" />
                 <div className="profile">
-                    <img src="/user-circle.svg" alt="Profile" className="profile-icon" />
+                    <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
                     <span className="username">{userEmail || 'Guest'}</span>
                     <div className="logout-menu" onClick={handleLogout}>
                         Logout
