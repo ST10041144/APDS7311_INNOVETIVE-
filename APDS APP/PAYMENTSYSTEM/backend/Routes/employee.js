@@ -5,7 +5,7 @@ import Employee from '../models/Employee.js';
 const router = express.Router();
 
 // Fetch all employees
-router.get('/', async (req, res) => {
+router.get('/fetch', async (req, res) => {
     try {
         const employees = await Employee.find(); // Fetch all employees
         res.status(200).json(employees); // Return as JSON
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // Add a new employee
-router.post('/', async (req, res) => {
+router.post('/newEmployee', async (req, res) => {
     const { email, password, role } = req.body;
     try {
         // Check if the email already exists

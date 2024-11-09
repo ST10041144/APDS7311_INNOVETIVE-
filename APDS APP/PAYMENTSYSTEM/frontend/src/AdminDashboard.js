@@ -36,7 +36,7 @@ const NewEmployee = ({ addEmployee }) => {
     const [employee, setEmployee] = useState({
         email: '',
         password: '',
-        role: 'employee', // Default role to 'employee'
+        role: 'Employee', // Default role to 'employee'
     });
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -51,7 +51,7 @@ const NewEmployee = ({ addEmployee }) => {
         e.preventDefault();
         try {
             await addEmployee(employee);
-            setEmployee({ email: '', password: '', role: 'employee' });
+            setEmployee({ email: '', password: '', role: 'Employee' });
             setErrorMessage('');
         } catch (error) {
             setErrorMessage('Failed to add employee. Please check the details.');
@@ -85,8 +85,8 @@ const NewEmployee = ({ addEmployee }) => {
                     value={employee.role}
                     required
                 >
-                    <option value="employee">Employee</option>
-                    <option value="admin">Admin</option>
+                    <option value="Employee">Employee</option>
+                    <option value="Admin">Admin</option>
                 </select>
                 <button type="submit">Add Employee</button>
             </form>
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
         setLoading(true);
         try {
             // Ensure the URL matches your backend route
-            const response = await fetch('https://localhost:5000/api/employees'); 
+            const response = await fetch('/api/employees/fetch'); 
             if (!response.ok) {
                 throw new Error('Failed to fetch employees');
             }
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
     // Add a new employee to the server
     const addEmployee = async (employee) => {
         try {
-            const response = await fetch('/api/employees', {
+            const response = await fetch('/api/employees/newEmployee', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
