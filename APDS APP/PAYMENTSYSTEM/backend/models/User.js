@@ -3,22 +3,21 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     fullName: {
         type: String,
-        required: true,
         trim: true,
+        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
     },
     idNumber: {
         type: String,
-        required: true,
         trim: true,
-        match: [/^\d{10,15}$/, 'idNumber must be between 10 and 15 digits'],  // Adjust as per your desired format
-  
+        match: [/^\d{10,15}$/, 'idNumber must be between 10 and 15 digits'],
+        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
     },
     accountNumber: {
         type: String,
-        required: true,
         unique: true,
         trim: true,
-        match: [/^\d{10,12}$/, 'accountNumber must be between 10 and 12 digits'],  // Adjust as per your desired format
+        match: [/^\d{10,12}$/, 'accountNumber must be between 10 and 12 digits'],
+        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
     },
     email: {
         type: String,
@@ -31,10 +30,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
-    confirmPassword: {
+    role: {
         type: String,
-        required: true,
+        enum: ['customer', 'employee', 'superAdmin'],
+        default: 'customer',
+        required: true
     },
     createdAt: {
         type: Date,
@@ -43,6 +43,7 @@ const userSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('User', userSchema);
+
 
 
 // Code Attribution

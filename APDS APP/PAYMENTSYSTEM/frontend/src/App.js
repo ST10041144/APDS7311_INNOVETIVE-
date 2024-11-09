@@ -14,7 +14,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className="App">
         <Navbar />
         <Routes>
           <Route path="/" element={<Register />} />
@@ -23,7 +23,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/payNow" element={<PayNow />} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
-          <Route path="/adminDash/*" element={<AdminDashboard />} />
+          <Route path="/adminDash/*" element={<AdminDashboard />} /> {/* Use /* for nested routes */}
           <Route path="/protected" element={<ProtectPage />} />
         </Routes>
       </div>

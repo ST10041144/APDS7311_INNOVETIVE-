@@ -1,0 +1,126 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; /* Alice Blue */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Admin Container */
+  .admin-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 2px solid #a8dadc; /* Light Teal */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+    color: #1d3557; /* Dark Blue */
+  }
+  
+  /* Action Cards */
+  .action-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .card {
+    background-color: #f1faee; /* Mint */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 40%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #1d3557; /* Dark Blue */
+    border: 1px solid #457b9d; /* Steel Blue */
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    background-color: #e63946; /* Red Hover */
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .card img {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    font-size: 1.2rem;
+  }
+  
+  /* New Employee Form */
+  .new-employee-form {
+    margin-top: 30px;
+  }
+  
+  .new-employee-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .new-employee-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #457b9d; /* Steel Blue */
+    border-radius: 5px;
+  }
+  
+  .new-employee-form button {
+    padding: 12px;
+    background-color: #457b9d; /* Steel Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .new-employee-form button:hover {
+    background-color: #1d3557; /* Darker Blue */
+  }
+  
+  /* Employee List */
+  .employee-list-container {
+    margin-top: 30px;
+  }
+  
+  .employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .employee-table th,
+  .employee-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-table th {
+    background-color: #f1faee; /* Mint */
+    color: #1d3557; /* Dark Blue */
+  }
+  
+  .employee-table tr:hover {
+    background-color: #f1faee;
+}
+

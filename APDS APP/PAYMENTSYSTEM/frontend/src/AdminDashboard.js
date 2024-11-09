@@ -1,112 +1,142 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './AdminDashboard.css';
 
-const Admin = () => {
-    const [employees, setEmployees] = useState([
-        { id: 1, name: 'John', surname: 'Doe', role: 'Manager', employeeId: 'E123' },
-        { id: 2, name: 'Jane', surname: 'Smith', role: 'Developer', employeeId: 'E124' },
-        { id: 3, name: 'Robert', surname: 'Brown', role: 'Designer', employeeId: 'E125' }
-    ]);
+const EmployeesList = ({ employees }) => (
+    <div className="employee-list-container">
+        <h2 className="page-title">Employees List</h2>
+        <table className="employee-table">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {employees.map((emp) => (
+                    <tr key={emp.id}>
+                        <td>{emp.email}</td>
+                        <td>{emp.password}</td>
+                        <td>{emp.role}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
 
-    const [newEmployee, setNewEmployee] = useState({ name: '', surname: '', role: '', employeeId: '' });
+const NewEmployee = ({ addEmployee }) => {
+    const [employee, setEmployee] = useState({
+        email: '',
+        password: '',
+        role: 'Employee',
+    });
 
-    const addEmployee = () => {
-        if (newEmployee.name && newEmployee.surname && newEmployee.role && newEmployee.employeeId) {
-            setEmployees([
-                ...employees,
-                { ...newEmployee, id: employees.length + 1 }
-            ]);
-            setNewEmployee({ name: '', surname: '', role: '', employeeId: '' });
-            alert('Employee added successfully!');
-        } else {
-            alert('Please fill out all fields.');
-        }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEmployee({ ...employee, [name]: value });
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setNewEmployee({ ...newEmployee, [name]: value });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await addEmployee(employee);
+        setEmployee({
+            email: '',
+            password: '',
+            role: 'Employee',
+        });
+    };
+
+    return (
+        <div className="new-employee-form">
+            <h2 className="page-title">Create New Employee</h2>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    name="email" 
+                    placeholder="Email" 
+                    onChange={handleChange} 
+                    value={employee.email}
+                    required
+                />
+                <input 
+                    name="password" 
+                    placeholder="Password" 
+                    onChange={handleChange} 
+                    value={employee.password}
+                    required
+                />
+                <select 
+                    name="role" 
+                    onChange={handleChange} 
+                    value={employee.role}
+                    required
+                >
+                    <option value="Customer">Customer</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Employee">Employee</option>
+                </select>
+                <button type="submit">Add Employee</button>
+            </form>
+        </div>
+    );
+};
+
+const AdminDashboard = () => {
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await fetch('/api/employees');  // Adjust the endpoint as needed
+                const data = await response.json();
+                setEmployees(data);
+            } catch (error) {
+                console.error("Failed to fetch employees:", error);
+            }
+        };
+
+        fetchEmployees();
+    }, []);
+
+    const addEmployee = async (employee) => {
+        try {
+            const response = await fetch('/api/employees', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(employee),
+            });
+            const newEmployee = await response.json();
+            setEmployees([...employees, newEmployee]);
+        } catch (error) {
+            console.error("Failed to add employee:", error);
+        }
     };
 
     return (
         <div className="admin-container">
-            <h1>Admin Dashboard</h1>
+            <header>
+                <h1>Admin Dashboard</h1>
+            </header>
             <div className="action-cards">
                 <Link to="employees" className="card">
-                    <p>View List of Employees</p>
+                    <img src="/employeeListAdmin.jpg" alt="View Employees" />
+                    <p>View Employees</p>
                 </Link>
-                <Link to="create-employee" className="card">
+                <Link to="newEmployee" className="card">
+                    <img src="/AddEmployeesAdmin.jpg" alt="Create Employee" />
                     <p>Create New Employee</p>
                 </Link>
             </div>
 
             <Routes>
-                {/* View Employee List */}
-                <Route
-                    path="employees"
-                    element={
-                        <div>
-                            <h2>Employee List</h2>
-                            <ul>
-                                {employees.map((employee) => (
-                                    <li key={employee.id}>
-                                        {employee.name} {employee.surname} - {employee.role} (ID: {employee.employeeId})
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    }
-                />
-
-                {/* Create New Employee */}
-                <Route
-                    path="create-employee"
-                    element={
-                        <div>
-                            <h2>Create New Employee</h2>
-                            <form
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    addEmployee();
-                                }}
-                            >
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="First Name"
-                                    value={newEmployee.name}
-                                    onChange={handleInputChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="surname"
-                                    placeholder="Last Name"
-                                    value={newEmployee.surname}
-                                    onChange={handleInputChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="role"
-                                    placeholder="Role"
-                                    value={newEmployee.role}
-                                    onChange={handleInputChange}
-                                />
-                                <input
-                                    type="text"
-                                    name="employeeId"
-                                    placeholder="Employee ID"
-                                    value={newEmployee.employeeId}
-                                    onChange={handleInputChange}
-                                />
-                                <button type="submit">Add Employee</button>
-                            </form>
-                        </div>
-                    }
-                />
+                <Route path="employees" element={<EmployeesList employees={employees} />} />
+                <Route path="newEmployee" element={<NewEmployee addEmployee={addEmployee} />} />
             </Routes>
         </div>
     );
 };
 
-export default Admin;
+export default AdminDashboard;
