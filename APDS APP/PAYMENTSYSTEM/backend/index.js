@@ -11,6 +11,8 @@ import authRoutes from './Routes/auth.js';
 import paymentRoutes from './Routes/payment.js';
 //import transactionRoutes from './Routes/transaction.js';
 import { ensureSSL } from './middleware/sslMiddleware.js'; // Import SSL middleware
+import employeeRoutes from './Routes/employee.js'; // Adjust the path as needed
+
 
 dotenv.config(); // Ensure dotenv is loaded before using process.env
 
@@ -37,6 +39,7 @@ if (process.env.NODE_ENV === 'production') {
 // Routes
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/payment', paymentRoutes); // Payment routes
+app.use('/api/employees', employeeRoutes); // Add employees
 //app.use('/api/transaction', transactionRoutes); // Transaction routes
 
 // SSL CERTIFICATE and KEY

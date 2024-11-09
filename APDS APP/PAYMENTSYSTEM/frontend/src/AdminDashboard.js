@@ -103,7 +103,8 @@ const AdminDashboard = () => {
     const fetchEmployees = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/employees');
+            // Ensure the URL matches your backend route
+            const response = await fetch('https://localhost:5000/api/employees'); 
             if (!response.ok) {
                 throw new Error('Failed to fetch employees');
             }
@@ -116,6 +117,7 @@ const AdminDashboard = () => {
             setLoading(false);
         }
     };
+    
 
     // Add a new employee to the server
     const addEmployee = async (employee) => {
