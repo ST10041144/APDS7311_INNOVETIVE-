@@ -19,14 +19,14 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Register />} />
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/loginEmp" element={<LoginEmp />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/payNow" element={<PayNow />} />
           <Route path="/employeeDash" element={<EmployeeDashboard />} />
-          <Route path="/adminDash/*" element={<AdminDashboard />} /> {/* Use /* for nested routes */}
+          <Route path="/adminDash/*" element={<AdminDashboard />} /> 
           <Route path="/protected" element={<ProtectPage />} />
         </Routes>
       </div>

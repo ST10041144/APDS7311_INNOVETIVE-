@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../LoginEmp.css';
 
-
 function LoginEmp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,30 +32,38 @@ function LoginEmp() {
     };
 
     return (
-        <div className="login-container">
-            <h2>Employee Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
-                <button className="login-btn" type="submit">Login</button>
-            </form>
+        <div className="login-emp-container">
+            <div className="image-side">
+            <img src="/paysherelogo.jpg" alt="Employee Login" />
+            </div>
+            <div className="emp-form-side">
+                <h2>Employee Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="emp-form-group">
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="emp-form-group">
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {error && <p className="emp-error-message">{error}</p>}
+                    <button className="emp-login-btn" type="submit">Login</button>
+                </form>
+                <p className="emp-register-link" onClick={() => navigate('/register')}>
+                    Customer? Register here
+                </p>
+            </div>
         </div>
     );
 }

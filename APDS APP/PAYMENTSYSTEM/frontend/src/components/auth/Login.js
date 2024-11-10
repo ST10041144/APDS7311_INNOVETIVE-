@@ -98,7 +98,7 @@ function Login() {
                     <button className="login-btn" type="submit">Login</button>
                 </form>
                 <p className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}>
-                    Don't have an account? Register here
+                    New Customer? Register here
                 </p>
                 <p className="Login-btnEmp" onClick={() => navigate('/loginEmp')} style={{ cursor: 'pointer' }}>
                     employee? login here

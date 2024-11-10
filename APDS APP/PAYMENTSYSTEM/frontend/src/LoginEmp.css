@@ -1,22 +1,31 @@
+/* Main container for login layout */
 .login-emp-container {
     display: flex;
+    flex-wrap: wrap;
     height: 100vh;
     font-family: 'Arial', sans-serif;
+    justify-content: center; /* Aligns both sections in the center */
 }
 
+/* Left side with image */
 .emp-image-side {
     width: 50%;
     background-color: #e0e7ff; /* Slightly different background color */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100vh; /* Full height to ensure it takes up space */
 }
 
 .emp-image-side img {
-    max-width: 70%;
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
 }
 
+/* Right side with form */
 .emp-form-side {
     width: 50%;
     padding: 40px;
@@ -24,33 +33,21 @@
     flex-direction: column;
     justify-content: center;
     background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    min-height: 100vh; /* Ensure form takes full height */
 }
 
-.emp-navbar {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-}
-
-.emp-navbar button {
-    background-color: #3a3af5; /* Different button color */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.emp-navbar button:hover {
-    background-color: #2929d1;
-}
-
+/* Title styling */
 h2 {
     color: #3a3af5; /* Adjusted color for employee login */
     font-size: 2rem;
     margin-bottom: 30px;
+    text-align: center;
 }
 
+/* Form group styling */
 .emp-form-group {
     width: 100%;
     margin-bottom: 15px;
@@ -62,8 +59,15 @@ h2 {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
+.emp-form-group input:focus {
+    border-color: #3a3af5;
+    outline: none;
+}
+
+/* Login button styling */
 .emp-login-btn {
     width: 100%;
     padding: 15px;
@@ -75,32 +79,71 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
 .emp-login-btn:hover {
     background-color: #2929d1;
 }
 
+/* Error message styling */
 .emp-error-message {
     color: red;
     margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
+/* Register link styling */
 .emp-register-link {
     margin-top: 15px;
     color: #3a3af5; /* Adjusted color */
     text-align: center;
     cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.emp-register-link:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
     .login-emp-container {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .emp-image-side,
     .emp-form-side {
         width: 100%;
+    }
+
+    .emp-form-side {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .emp-form-group input {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .emp-login-btn {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+
+    .emp-register-link {
+        font-size: 0.85rem;
+    }
+
+    .emp-navbar {
+        margin-bottom: 15px;
     }
 }
