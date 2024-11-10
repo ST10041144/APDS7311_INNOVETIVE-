@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Route, Routes, Link } from 'react-router-dom';
 import './AdminDashboard.css';
 
@@ -32,17 +32,6 @@ const EmployeesList = ({ employees }) => (
     </div>
 );
 
-// PropTypes for EmployeesList
-EmployeesList.propTypes = {
-    employees: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            email: PropTypes.string.isRequired,
-            role: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-};
-
 // Component to create a new employee
 const NewEmployee = ({ addEmployee }) => {
     const [employee, setEmployee] = useState({
@@ -52,13 +41,11 @@ const NewEmployee = ({ addEmployee }) => {
     });
     const [errorMessage, setErrorMessage] = useState('');
 
-    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEmployee({ ...employee, [name]: value });
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -91,12 +78,7 @@ const NewEmployee = ({ addEmployee }) => {
                     value={employee.password}
                     required
                 />
-                <select
-                    name="role"
-                    onChange={handleChange}
-                    value={employee.role}
-                    required
-                >
+                <select name="role" onChange={handleChange} value={employee.role} required>
                     <option value="Employee">Employee</option>
                     <option value="Admin">Admin</option>
                 </select>
@@ -106,26 +88,16 @@ const NewEmployee = ({ addEmployee }) => {
     );
 };
 
-// PropTypes for NewEmployee
-NewEmployee.propTypes = {
-    addEmployee: PropTypes.func.isRequired,
-};
-
 const AdminDashboard = () => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Fetch all employees from the server
     const fetchEmployees = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/employees/fetch');
-            if (!response.ok) {
-                throw new Error('Failed to fetch employees');
-            }
-            const data = await response.json();
-            setEmployees(data);
+            const response = await axios.get('/api/employees/fetch');
+            setEmployees(response.data);
         } catch (error) {
             console.error(error);
             setError('Error fetching employees');
@@ -134,40 +106,41 @@ const AdminDashboard = () => {
         }
     };
 
-    // Add a new employee to the server
     const addEmployee = async (employee) => {
         try {
-            const response = await fetch('/api/employees/newEmployee', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(employee),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to add employee');
-            }
-
-            const newEmployee = await response.json();
-            setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
+            const response = await axios.post('/api/employees/newEmployee', employee);
+            setEmployees((prevEmployees) => [...prevEmployees, response.data]);
         } catch (error) {
             console.error('Error adding employee:', error);
             throw error;
         }
     };
 
-    // Fetch employees on component mount
     useEffect(() => {
         fetchEmployees();
     }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userEmail');
+        window.location.href = '/login'; // Redirect to login page
+    };
 
     return (
         <div className="admin-container">
             <header>
                 <h1>Admin Dashboard</h1>
             </header>
+            <div className="top-nav">
+                <img src="/paysherelogo.jpg" alt="Admin Logo" className="logo" />
+                <div className="profile">
+                    <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
+                    <span className="username">Admin</span> {/* Update with actual admin name if available */}
+                    <div className="logout-menu" onClick={handleLogout}>
+                        Logout
+                    </div>
+                </div>
+            </div>
             <div className="action-cards">
                 <Link to="employees" className="card">
                     <img src="/employeeListAdmin.jpg" alt="View Employees" />
@@ -190,10 +163,7 @@ const AdminDashboard = () => {
                         )
                     }
                 />
-                <Route
-                    path="newEmployee"
-                    element={<NewEmployee addEmployee={addEmployee} />}
-                />
+                <Route path="newEmployee" element={<NewEmployee addEmployee={addEmployee} />} />
             </Routes>
 
             {error && <p className="error-message">{error}</p>}
@@ -201,5 +171,4 @@ const AdminDashboard = () => {
     );
 };
 
-// Default export
 export default AdminDashboard;
