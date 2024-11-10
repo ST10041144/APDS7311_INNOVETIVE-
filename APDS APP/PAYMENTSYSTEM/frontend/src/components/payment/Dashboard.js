@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; 
-import '../../Dashboard.css'; 
-import PayNow from './PayNow'; 
+import axios from 'axios';
+import '../../Dashboard.css';
+import PayNow from './PayNow';
 
 const Dashboard = () => {
     const [userEmail, setUserEmail] = useState('');
@@ -14,7 +14,7 @@ const Dashboard = () => {
             console.error('User email not found in local storage');
         }
         setUserEmail(email);
-    
+
         if (email) {
             axios.get(`/api/payment/payments/${email}`)
                 .then((response) => {
@@ -26,12 +26,18 @@ const Dashboard = () => {
                 });
         }
     }, [userEmail]);
-    
 
+    // Logout handler with keyboard accessibility
     const handleLogout = () => {
         //localStorage.removeItem('token');
         //localStorage.removeItem('userEmail');
-        window.location.href = '/login'; 
+        window.location.href = '/login';
+    };
+
+    const handleLogoutKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            handleLogout();
+        }
     };
 
     const addTransaction = (amount, accountNumber, currency) => {
@@ -40,13 +46,11 @@ const Dashboard = () => {
             amount: `${amount} ${currency}`,
             accountNumber,
             status: 'Pending',
-            createdAt: new Date().toISOString(),  // Set the current date and time
+            createdAt: new Date().toISOString(),
         };
-    
+
         setRecentTransactions((prevTransactions) => [newTransaction, ...prevTransactions]);
     };
-    
-    
 
     return (
         <div className="dashboard">
@@ -55,7 +59,14 @@ const Dashboard = () => {
                 <div className="profile">
                     <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
                     <span className="username">{userEmail || 'Guest'}</span>
-                    <div className="logout-menu" onClick={handleLogout}>
+                    <div
+                        className="logout-menu"
+                        onClick={handleLogout}
+                        onKeyDown={handleLogoutKeyDown}
+                        role="button"
+                        tabIndex={0}
+                        aria-label="Logout"
+                    >
                         Logout
                     </div>
                 </div>
@@ -64,8 +75,7 @@ const Dashboard = () => {
             <h1>Welcome to Your Dashboard</h1>
 
             <div className="action-cards">
-                <PayNow onPaymentSuccess={addTransaction} userEmail={userEmail} /> {/* Pass userEmail */}
-            
+                <PayNow onPaymentSuccess={addTransaction} userEmail={userEmail} />
             </div>
 
             <div className="recent-transactions">
@@ -80,10 +90,10 @@ const Dashboard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {recentTransactions.map((transaction, index) => (
-                            <tr key={index}>
+                        {recentTransactions.map((transaction) => (
+                            <tr key={transaction.createdAt || transaction.accountNumber}>
                                 <td>{transaction.accountNumber}</td>
-                                <td>{transaction.amount}</td> 
+                                <td>{transaction.amount}</td>
                                 <td>{transaction.createdAt ? new Date(transaction.createdAt).toLocaleDateString() : ''}</td>
                                 <td>{transaction.status}</td>
                             </tr>
