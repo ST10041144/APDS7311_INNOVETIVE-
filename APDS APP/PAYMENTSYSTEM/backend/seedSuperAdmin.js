@@ -10,7 +10,7 @@ const addSuperAdmin = async () => {
 
   const hashedPassword = await bcrypt.hash('Test123', 10); // Replace with a strong password
   const superAdmin = new User({
-    email: 'TestSuperAdmin@gmail.com.com',
+    email: 'Admin@gmail.com.com',
     password: hashedPassword,
     role: 'superAdmin', // This ensures the conditional required fields are bypassed
 });

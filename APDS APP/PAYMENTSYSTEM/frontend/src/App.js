@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/auth/Login';
+import LoginEmp from './components/auth/LoginEmp';
 import ProtectPage from './components/ProtectedPage';
 import Register from './components/auth/Register';
 import Navbar from './components/navbar';
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/loginEmp" element={<LoginEmp />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/payNow" element={<PayNow />} />

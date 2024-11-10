@@ -1,23 +1,23 @@
-.login-container {
+.login-emp-container {
     display: flex;
     height: 100vh;
     font-family: 'Arial', sans-serif;
 }
 
-.image-side {
+.emp-image-side {
     width: 50%;
-    background-color: #f0f0f0;
+    background-color: #e0e7ff; /* Slightly different background color */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.image-side img {
+.emp-image-side img {
     max-width: 70%;
     border-radius: 10px;
 }
 
-.form-side {
+.emp-form-side {
     width: 50%;
     padding: 40px;
     display: flex;
@@ -26,14 +26,14 @@
     background-color: #fff;
 }
 
-.navbar {
+.emp-navbar {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
 }
 
-.navbar button {
-    background-color: #5f5cf8;
+.emp-navbar button {
+    background-color: #3a3af5; /* Different button color */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -41,22 +41,22 @@
     cursor: pointer;
 }
 
-.navbar button:hover {
-    background-color: #4b4add;
+.emp-navbar button:hover {
+    background-color: #2929d1;
 }
 
 h2 {
-    color: #5f5cf8;
+    color: #3a3af5; /* Adjusted color for employee login */
     font-size: 2rem;
     margin-bottom: 30px;
 }
 
-.form-group {
+.emp-form-group {
     width: 100%;
     margin-bottom: 15px;
 }
 
-.form-group input {
+.emp-form-group input {
     width: 100%;
     padding: 15px;
     font-size: 1rem;
@@ -64,10 +64,10 @@ h2 {
     border-radius: 5px;
 }
 
-.login-btn {
+.emp-login-btn {
     width: 100%;
     padding: 15px;
-    background-color: #5f5cf8;
+    background-color: #3a3af5; /* Matching button color */
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
@@ -77,45 +77,30 @@ h2 {
     margin-top: 20px;
 }
 
-.login-btn:hover {
-    background-color: #4b4add;
+.emp-login-btn:hover {
+    background-color: #2929d1;
 }
 
-.error-message {
+.emp-error-message {
     color: red;
     margin-top: 10px;
 }
 
-.register-link {
+.emp-register-link {
     margin-top: 15px;
-    color: #5f5cf8;
-    text-align: center;
-    cursor: pointer;
-}
-
-.Login-btnEmp {
-    margin-top: 15px;
-    color: #5f5cf8;
+    color: #3a3af5; /* Adjusted color */
     text-align: center;
     cursor: pointer;
 }
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
-    .login-container {
+    .login-emp-container {
         flex-direction: column;
     }
 
-    .image-side,
-    .form-side {
+    .emp-image-side,
+    .emp-form-side {
         width: 100%;
     }
 }
-
-
-
-/* // Code Attribution
-// This code was referenced from W3Schools
-// CSS Tutorial (w3schools.com)
-// Author name , W3Schools 
-// CSS Tutorial (w3schools.com) */

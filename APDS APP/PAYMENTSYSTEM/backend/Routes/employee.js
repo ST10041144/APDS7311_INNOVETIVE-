@@ -1,8 +1,10 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
 import Employee from '../models/Employee.js';
 
 
 const router = express.Router();
+
 
 // Fetch all employees
 router.get('/fetch', async (req, res) => {
@@ -14,9 +16,29 @@ router.get('/fetch', async (req, res) => {
     }
 });
 
+// // Add a new employee
+// router.post('/newEmployee', async (req, res) => {
+//     const { email, password, role } = req.body;
+//     try {
+//         // Check if the email already exists
+//         const existingEmployee = await Employee.findOne({ email });
+//         if (existingEmployee) {
+//             return res.status(400).json({ message: "Email already exists" });
+//         }
+
+//         // Create a new employee
+//         const newEmployee = new Employee({ email, password, role });
+//         await newEmployee.save();
+//         res.status(201).json(newEmployee); // Return the created employee as JSON
+//     } catch (error) {
+//         res.status(500).json({ message: 'Error adding employee', error });
+//     }
+// });
+
 // Add a new employee
 router.post('/newEmployee', async (req, res) => {
     const { email, password, role } = req.body;
+
     try {
         // Check if the email already exists
         const existingEmployee = await Employee.findOne({ email });
@@ -24,13 +46,29 @@ router.post('/newEmployee', async (req, res) => {
             return res.status(400).json({ message: "Email already exists" });
         }
 
-        // Create a new employee
-        const newEmployee = new Employee({ email, password, role });
+        // Hash the password before saving
+        const saltRounds = 10; // You can adjust the salt rounds for hashing complexity
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        // Create a new employee with the hashed password
+        const newEmployee = new Employee({
+            email,
+            password: hashedPassword,
+            role
+        });
+
+        // Save to the database
         await newEmployee.save();
-        res.status(201).json(newEmployee); // Return the created employee as JSON
+
+        // Exclude password in the response
+        const { password: _, ...employeeData } = newEmployee.toObject();
+        res.status(201).json(employeeData); // Return the created employee without the password
     } catch (error) {
+        console.error("Error adding employee:", error);
         res.status(500).json({ message: 'Error adding employee', error });
     }
 });
+
+
 
 export default router;

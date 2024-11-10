@@ -6,6 +6,8 @@ import { validatePaymentInput } from '../middleware/paymentValidationMiddleware.
 import { check, validationResult } from 'express-validator';
 import { paymentRateLimiter, speedLimiter } from '../middleware/rateLimitMiddleware.js';
 import { ensureSSL } from '../middleware/sslMiddleware.js';
+import Employee from '../models/Employee.js'; // Adjust path if necessary
+
 // import users from '../config.js'; 
 
 
@@ -98,7 +100,7 @@ router.post(
     }
 );
 
-// Login Route with whitelisting
+
 
 // Login Route with whitelisting
 router.post(
@@ -128,6 +130,56 @@ router.post(
             res.status(200).json({ message: 'Login successful', token });
         } catch (error) {
             console.error('Login error:', error);
+            res.status(500).json({ message: 'Something went wrong. Please try again.' });
+        }
+    }
+);
+
+// Employee Login Route
+router.post(
+    '/loginEmp',
+    paymentRateLimiter,
+    speedLimiter,
+    async (req, res) => {
+        const { email, password } = req.body;
+
+        try {
+            // Validate email and password input
+            if (!email || !password) {
+                return res.status(400).json({ message: 'Email and password are required' });
+            }
+
+            // Find employee by email
+            const employee = await Employee.findOne({ email });
+            if (!employee) {
+                return res.status(404).json({ message: 'Employee not found' });
+            }
+
+            // Compare password using bcrypt
+            const isMatch = await bcrypt.compare(password, employee.password);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Invalid password' });
+            }
+
+            // Generate JWT token with employee ID and role
+            const token = jwt.sign(
+                { employeeId: employee._id, role: employee.role },
+                JWT_SECRET,
+                { expiresIn: '1h' }
+            );
+
+            // Successful login response
+            res.status(200).json({
+                message: 'Login successful',
+                token,
+                user: {
+                    id: employee._id,
+                    email: employee.email,
+                    role: employee.role
+                }
+            });
+        } catch (error) {
+            console.error('Employee login error:', error);
             res.status(500).json({ message: 'Something went wrong. Please try again.' });
         }
     }
