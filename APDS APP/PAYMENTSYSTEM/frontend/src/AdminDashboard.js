@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Routes, Link } from 'react-router-dom';
 import './AdminDashboard.css';
 
@@ -31,12 +32,23 @@ const EmployeesList = ({ employees }) => (
     </div>
 );
 
+// PropTypes for EmployeesList
+EmployeesList.propTypes = {
+    employees: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            email: PropTypes.string.isRequired,
+            role: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+};
+
 // Component to create a new employee
 const NewEmployee = ({ addEmployee }) => {
     const [employee, setEmployee] = useState({
         email: '',
         password: '',
-        role: 'Employee', // Default role to 'employee'
+        role: 'Employee',
     });
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -94,6 +106,11 @@ const NewEmployee = ({ addEmployee }) => {
     );
 };
 
+// PropTypes for NewEmployee
+NewEmployee.propTypes = {
+    addEmployee: PropTypes.func.isRequired,
+};
+
 const AdminDashboard = () => {
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -103,8 +120,7 @@ const AdminDashboard = () => {
     const fetchEmployees = async () => {
         setLoading(true);
         try {
-            // Ensure the URL matches your backend route
-            const response = await fetch('/api/employees/fetch'); 
+            const response = await fetch('/api/employees/fetch');
             if (!response.ok) {
                 throw new Error('Failed to fetch employees');
             }
@@ -117,7 +133,6 @@ const AdminDashboard = () => {
             setLoading(false);
         }
     };
-    
 
     // Add a new employee to the server
     const addEmployee = async (employee) => {
@@ -186,4 +201,5 @@ const AdminDashboard = () => {
     );
 };
 
+// Default export
 export default AdminDashboard;
