@@ -30,4 +30,3 @@ jobs:
             -Dsonar.projectKey=ST10073908_APDS7311_INNOVETIVE- \
             -Dsonar.organization=payshere \
             -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=3c06387dfb429ca4857d04ff86532bbc60476530
