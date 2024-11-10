@@ -35,7 +35,7 @@ function Login() {
                 navigate('/dashboard');
             }
         } catch (err) {
-            // Optional chaining for error handling
+            // Use optional chaining to access error messages
             const errorMessage = err.response?.data?.message || 'Something went wrong. Please try again.';
             setError(errorMessage);
         }
@@ -47,6 +47,13 @@ function Login() {
 
         // Check if the email belongs to an employee (e.g., if it contains a specific domain)
         setIsEmployee(email.includes('@yourcompany.com'));
+    };
+
+    // Function to handle keyboard events for accessibility
+    const handleKeyDown = (e, navigateTo) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            navigateTo();  // Navigate on Enter or Space
+        }
     };
 
     return (
@@ -100,11 +107,7 @@ function Login() {
                     onClick={() => navigate('/register')}
                     style={{ cursor: 'pointer' }}
                     tabIndex="0"
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            navigate('/register');  // Navigates on Enter or Space
-                        }
-                    }}
+                    onKeyDown={(e) => handleKeyDown(e, () => navigate('/register'))}  // Keyboard listener added
                 >
                     New Customer? Register here
                 </p>
@@ -113,11 +116,7 @@ function Login() {
                     onClick={() => navigate('/loginEmp')}
                     style={{ cursor: 'pointer' }}
                     tabIndex="0"
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            navigate('/loginEmp');  // Navigates on Enter or Space
-                        }
-                    }}
+                    onKeyDown={(e) => handleKeyDown(e, () => navigate('/loginEmp'))}  // Keyboard listener added
                 >
                     Employee? Login here
                 </p>
