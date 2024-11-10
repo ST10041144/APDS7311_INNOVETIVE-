@@ -40,8 +40,26 @@ const EmployeeDashboard = () => {
     setSelectedPayment(null);
   };
 
+  const handleLogout = () => {
+    // Clear any session data (e.g., token, user info) if stored
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    window.location.href = '/login'; // Redirect to login page
+  };
+
   return (
     <div className="employee-dashboard">
+      <div className="top-nav">
+        <img src="/paysherelogo.jpg" alt="PayShere Logo" className="logo" />
+        <div className="profile">
+          <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
+          <span className="username">Employee</span> {/* Update with actual employee name if available */}
+          <div className="logout-menu" onClick={handleLogout}>
+            Logout
+          </div>
+        </div>
+      </div>
+
       <h2>Employee Dashboard - Verify Payments</h2>
       {message && <div className="message">{message}</div>}
       <table className="payments-table">
