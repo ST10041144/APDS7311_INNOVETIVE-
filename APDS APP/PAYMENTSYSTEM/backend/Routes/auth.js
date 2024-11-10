@@ -135,13 +135,13 @@ router.post(
     }
 );
 
-// Employee Login Route
+// Employee and Admin  Login Route
 router.post(
-    '/loginEmp',
+    '/aeLogin',
     paymentRateLimiter,
     speedLimiter,
     async (req, res) => {
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
 
         try {
             // Validate email and password input
@@ -149,21 +149,21 @@ router.post(
                 return res.status(400).json({ message: 'Email and password are required' });
             }
 
-            // Find employee by email
-            const employee = await Employee.findOne({ email });
-            if (!employee) {
-                return res.status(404).json({ message: 'Employee not found' });
+            // Find user (Employee or Admin) based on email and role
+            const user = await Employee.findOne({ email, role });
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
             }
 
             // Compare password using bcrypt
-            const isMatch = await bcrypt.compare(password, employee.password);
+            const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(401).json({ message: 'Invalid password' });
             }
 
-            // Generate JWT token with employee ID and role
+            // Generate JWT token with user ID and role
             const token = jwt.sign(
-                { employeeId: employee._id, role: employee.role },
+                { userId: user._id, role: user.role },
                 JWT_SECRET,
                 { expiresIn: '1h' }
             );
@@ -173,17 +173,18 @@ router.post(
                 message: 'Login successful',
                 token,
                 user: {
-                    id: employee._id,
-                    email: employee.email,
-                    role: employee.role
+                    id: user._id,
+                    email: user.email,
+                    role: user.role
                 }
             });
         } catch (error) {
-            console.error('Employee login error:', error);
+            console.error('login error:', error);
             res.status(500).json({ message: 'Something went wrong. Please try again.' });
         }
     }
 );
+
 
 
 export default router;
