@@ -51,12 +51,12 @@ function Register() {
             </div>
             <div className="form-side">
                 <div className="navbar">
-                    <button onClick={() => navigate('/')}>Home</button>
-                    <button onClick={() => navigate('/about')}>About Us</button>
-                    <button onClick={() => navigate('/contact')}>Contact</button>
-                    <button onClick={() => navigate('/register')}>Register</button>
-                    <button onClick={() => navigate('/login')}>Login</button>
-                    <button onClick={() => navigate('/protected')}>Protected</button>
+                    <button onClick={() => navigate('/')} aria-label="Go to Home">Home</button>
+                    <button onClick={() => navigate('/about')} aria-label="Learn more about us">About Us</button>
+                    <button onClick={() => navigate('/contact')} aria-label="Contact us">Contact</button>
+                    <button onClick={() => navigate('/register')} aria-label="Go to Register">Register</button>
+                    <button onClick={() => navigate('/login')} aria-label="Go to Login">Login</button>
+                    <button onClick={() => navigate('/protected')} aria-label="Go to Protected">Protected</button>
                 </div>
                 <h2>Register</h2>
                 <form onSubmit={handleSubmit}>
@@ -115,9 +115,19 @@ function Register() {
                         />
                     </div>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button type="submit" className="register-btn">Register</button>
+                    <button type="submit" className="register-btn" aria-label="Submit registration form">Register</button>
                 </form>
-                <p className="login-link" onClick={() => navigate('/login')} style={{ cursor: 'pointer' }}>
+                <p
+                    className="login-link"
+                    onClick={() => navigate('/login')}
+                    style={{ cursor: 'pointer' }}
+                    tabIndex={0}  // Makes the element focusable
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            navigate('/login');
+                        }
+                    }}
+                >
                     Already have an account? Login here
                 </p>
             </div>
