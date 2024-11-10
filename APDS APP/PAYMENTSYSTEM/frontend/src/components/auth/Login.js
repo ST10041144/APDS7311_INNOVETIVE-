@@ -97,11 +97,11 @@ function Login() {
                     {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
                     <button className="login-btn" type="submit">Login</button>
                 </form>
-                <p className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }}>
+                <p className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }} tabIndex="0">
                     New Customer? Register here
                 </p>
-                <p className="Login-btnEmp" onClick={() => navigate('/loginEmp')} style={{ cursor: 'pointer' }}>
-                    employee? login here
+                <p className="Login-btnEmp" onClick={() => navigate('/loginEmp')} style={{ cursor: 'pointer' }} tabIndex="0">
+                    Employee? Login here
                 </p>
             </div>
         </div>
