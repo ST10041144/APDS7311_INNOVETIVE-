@@ -36,11 +36,8 @@ function Register() {
                 navigate('/login'); // Redirect to login page after successful registration
             }
         } catch (err) {
-            if (err.response && err.response.data.errors) {
-                setError(err.response.data.errors.map(e => e.msg).join(', '));  // Show validation errors
-            } else {
-                setError('Something went wrong. Please try again.');
-            }
+            const errorMessage = err.response?.data?.errors?.map(e => e.msg).join(', ') || 'Something went wrong. Please try again.';
+            setError(errorMessage);
         }
     };
 
@@ -136,6 +133,7 @@ function Register() {
 }
 
 export default Register;
+
 
 
 // Code Attribution 
