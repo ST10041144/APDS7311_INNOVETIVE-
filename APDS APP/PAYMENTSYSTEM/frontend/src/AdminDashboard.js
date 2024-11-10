@@ -135,8 +135,15 @@ const AdminDashboard = () => {
                 <img src="/paysherelogo.jpg" alt="Admin Logo" className="logo" />
                 <div className="profile">
                     <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
-                    <span className="username">Admin</span> {/* Update with actual admin name if available */}
-                    <div className="logout-menu" onClick={handleLogout}>
+                    <span className="username">Admin</span>
+                    <div
+                        className="logout-menu"
+                        onClick={handleLogout}
+                        onKeyDown={(e) => e.key === 'Enter' && handleLogout()}
+                        tabIndex={0}
+                        role="button"
+                        aria-label="Logout"
+                    >
                         Logout
                     </div>
                 </div>
