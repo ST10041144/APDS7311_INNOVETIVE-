@@ -6,6 +6,7 @@ import '../../LoginEmp.css';
 function LoginEmp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('Employee')
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -14,14 +15,19 @@ function LoginEmp() {
         setError('');
 
         try {
-            const response = await axios.post("/api/auth/loginEmp", {
+            const response = await axios.post(`/api/auth/aeLogin`, {
                 email,
                 password,
+                role,
             });
 
             // Store token and navigate to employee dashboard
             localStorage.setItem('token', response.data.token);
-            navigate('/employeeDash');
+            if (role === 'Admin') {
+                navigate('/adminDash'); // Admin Dashboard
+            } else {
+                navigate('/employeeDash'); // Employee Dashboard
+            }
         } catch (err) {
             if (err.response && err.response.data.message) {
                 setError(err.response.data.message);
@@ -56,6 +62,13 @@ function LoginEmp() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                    </div>
+                    {/* Add Role Selection Dropdown */}
+                    <div className="emp-form-group">
+                        <select name="role" value={role} onChange={(e) => setRole(e.target.value)}>
+                            <option value="Employee">Employee</option>
+                            <option value="Admin">Admin</option>
+                        </select>
                     </div>
                     {error && <p className="emp-error-message">{error}</p>}
                     <button className="emp-login-btn" type="submit">Login</button>
