@@ -1,54 +1,57 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../PayNow.css'; 
+import '../../PayNow.css';
 
 const PayNow = ({ onPaymentSuccess, userEmail }) => {
     const [amount, setAmount] = useState('');
     const [currency, setCurrency] = useState('USD');
     const [accountNumber, setAccountNumber] = useState('');
     const [swiftCode, setSwiftCode] = useState('');
-    const [provider] = useState('SWIFT'); 
+    const [provider] = useState('SWIFT');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
     const currencies = ['USD', 'EUR', 'GBP', 'ZAR'];
 
+    // Improved regex using \d for digits
+    const accountNumberPattern = /^\d{10,18}$/;
+
     const handlePayment = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
 
-        const accountNumberPattern = /^[0-9]{10,18}$/;
-
+        // Validate account number
         if (!accountNumberPattern.test(accountNumber)) {
-            setError('Account number must be between 10 and 18 digits');
+            setError('Account number must be between 10 and 18 digits.');
             return;
         }
 
         try {
             // Save transaction to backend for pending review
-            const response = await axios.post("/api/payment/payment", {
+            const response = await axios.post('/api/payment/payment', {
                 amount,
                 currency,
-                provider, 
+                provider,
                 accountNumber,
                 swiftCode,
-                userEmail, 
+                userEmail,
             });
 
             if (response.status === 201) {
-                onPaymentSuccess(amount, accountNumber, currency); 
+                onPaymentSuccess(amount, accountNumber, currency);
                 setSuccess('Payment has been made successfully!');
-                
-                // Redirect to dashboard after short delay
+
+                // Redirect to dashboard after a short delay
                 setTimeout(() => {
                     navigate('/dashboard');
                 }, 2000);
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Something went wrong. Please try again.');
+            const errorMessage = err.response?.data?.message || 'An unexpected error occurred. Please try again later.';
+            setError(errorMessage);
         }
     };
 
@@ -58,18 +61,27 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
             <form onSubmit={handlePayment}>
                 {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
                 {success && <p className="success-message" style={{ color: 'green' }}>{success}</p>}
+
+                {/* Amount Input */}
                 <div className="pay-group">
-                    <label>Amount</label>
+                    <label htmlFor="amount">Amount</label>
                     <input
+                        id="amount"
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         required
                     />
                 </div>
+
+                {/* Currency Selector */}
                 <div className="pay-group">
-                    <label>Currency</label>
-                    <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+                    <label htmlFor="currency">Currency</label>
+                    <select
+                        id="currency"
+                        value={currency}
+                        onChange={(e) => setCurrency(e.target.value)}
+                    >
                         {currencies.map((currencyOption) => (
                             <option key={currencyOption} value={currencyOption}>
                                 {currencyOption}
@@ -77,55 +89,42 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
                         ))}
                     </select>
                 </div>
+
+                {/* Account Number Input */}
                 <div className="pay-group">
-                    <label>Account Number</label>
+                    <label htmlFor="accountNumber">Account Number</label>
                     <input
+                        id="accountNumber"
                         type="text"
                         value={accountNumber}
                         onChange={(e) => setAccountNumber(e.target.value)}
                         required
                     />
                 </div>
+
+                {/* SWIFT Code Input */}
                 <div className="pay-group">
-                    <label>SWIFT Code</label>
+                    <label htmlFor="swiftCode">SWIFT Code</label>
                     <input
+                        id="swiftCode"
                         type="text"
                         value={swiftCode}
                         onChange={(e) => setSwiftCode(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit" className="paynow-btn">Pay Now</button>
+
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    className="paynow-btn"
+                    onKeyDown={(e) => e.key === 'Enter' && handlePayment(e)}
+                >
+                    Pay Now
+                </button>
             </form>
         </div>
     );
 };
 
 export default PayNow;
-
-// Code Attribution 
-// This code was referenced from Medium 
-// How to hash password in React App, before sending it to the API | by JonathanSanchez.Dev | Boca Code | Medium
-// Author name JonathanSanchez
-// https://medium.com/@jonathans199?source=post_page-----6e10a06f0a8e--------------------------------
-
-
-// Code Attribution
-// This code was referenced from StackOverFlow 
-// filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
-// Author name StackOverFlow 
-// filter - blacklisting vs whitelisting in form's input filtering and validation - Stack Overflow
-
-
-
-// Code Attribution
-// This code was referened from Dev Community
-// Data Encryption: Securing Data at Rest and in Transit with Encryption Technologies - DEV Community 
-// Author name Jatin 
-//https://dev.to/j471n
-
-// Code Attribution 
-// This code was referenced from Practical devsecops
-// What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com) 
-// Author name Devscopes 
-//What is DevSecOps Pipelines? - Easy Guide to Understand (practical-devsecops.com)
