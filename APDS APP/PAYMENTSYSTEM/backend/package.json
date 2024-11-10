@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "Start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "sonar": "sonarqube-scanner"
+
   },
   "keywords": [],
   "author": "",
@@ -30,6 +32,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "sonarqube-scanner": "^4.2.5"
   }
 }
