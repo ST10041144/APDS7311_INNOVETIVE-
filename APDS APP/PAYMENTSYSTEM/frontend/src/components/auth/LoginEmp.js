@@ -60,7 +60,7 @@ function LoginEmp() {
                     {error && <p className="emp-error-message">{error}</p>}
                     <button className="emp-login-btn" type="submit">Login</button>
                 </form>
-                <p className="emp-register-link" onClick={() => navigate('/register')}>
+                <p className="emp-register-link" onClick={() => navigate('/register')} tabIndex="0">
                     Customer? Register here
                 </p>
             </div>
