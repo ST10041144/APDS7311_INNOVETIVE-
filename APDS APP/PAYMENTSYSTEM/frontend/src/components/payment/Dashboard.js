@@ -72,7 +72,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <h1>Welcome to Your Dashboard</h1>
+            <h1 className="welcome-text">Your Digital Gateway To Global Finance</h1>
 
             <div className="action-cards">
                 <PayNow onPaymentSuccess={addTransaction} userEmail={userEmail} />

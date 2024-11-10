@@ -1,18 +1,24 @@
 .dashboard {
     padding: 20px;
+    background-color: #f0f4f8;
+    font-family: 'Arial', sans-serif;
 }
 
 .logo {
-    width: 100px; /* Set a width for the logo */
-    height: auto; /* Keep aspect ratio */
-    margin-right: auto; /* Automatically create space to the right */
+    width: 100px;
+    height: auto;
+    margin-right: auto;
 }
 
 .top-nav {
     display: flex;
-    justify-content: space-between; /* Adjust to space between logo and profile */
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px; /* Space below the top nav */
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .profile {
@@ -28,12 +34,26 @@
 }
 
 .username {
-    margin-right: 10px; /* Space between email and logout */
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
 }
 
 .logout-menu {
     cursor: pointer;
-    color: blue; /* Optional: style for logout text */
+    background-color: #43036b; /* Blue color */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px 20px; /* Padding for a button look */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.logout-menu:hover {
+    background-color: #4200b3; /* Darker blue on hover */
 }
 
 .action-cards {
@@ -43,24 +63,26 @@
 }
 
 .card {
-    background-color: #f9f9f9; /* Off-white background */
-    color: #333; /* Text color */
+    background-color: #fff;
+    color: #333;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    width: 250px; /* Fixed width */
-    height: 200px; /* Fixed height to make it square */
-    display: flex; /* Flexbox for centering content */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
+    width: 1050px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for 3D effect */
-    transition: transform 0.2s; /* Smooth transition for hover effect */
-    margin: 0 50px; /* Add margin for spacing */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0 20px;
 }
 
 .card:hover {
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .recent-transactions {
@@ -68,18 +90,43 @@
 }
 
 table {
-    width: 100%;
+    width: 100%; /* Full width for the table */
+    max-width: 1200px; /* Set a maximum width */
+    margin: 0 auto; /* Center the table */
     border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 th, td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
 }
 
 th {
     background-color: #f2f2f2;
+    font-weight: bold;
+    color: #555;
 }
+
+td {
+    color: #666;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.welcome-text {
+    color: #620597; /* Blue color */
+    font-size: 24px; /* Optional: Change the font size */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+
 
 
 /* // Code Attribution
