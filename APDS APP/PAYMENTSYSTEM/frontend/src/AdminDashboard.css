@@ -13,7 +13,7 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    border: 2px solid #a8dadc; /* Light Teal */
+    border: 2px solid #4200b3; 
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   }
   
@@ -44,12 +44,12 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     color: #1d3557; /* Dark Blue */
-    border: 1px solid #457b9d; /* Steel Blue */
+    border: 1px solid #4200b3; 
     transition: all 0.3s ease;
   }
   
   .card:hover {
-    background-color: #e63946; /* Red Hover */
+    background-color: #4200b3; 
     color: white;
     transform: scale(1.05);
   }
@@ -79,13 +79,20 @@ body {
   .new-employee-form input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #457b9d; /* Steel Blue */
+    border: 1px solid #4200b3; 
+    border-radius: 5px;
+  }
+
+  .new-employee-form select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #4200b3; 
     border-radius: 5px;
   }
   
   .new-employee-form button {
     padding: 12px;
-    background-color: #457b9d; /* Steel Blue */
+    background-color: #4200b3; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -94,7 +101,7 @@ body {
   }
   
   .new-employee-form button:hover {
-    background-color: #1d3557; /* Darker Blue */
+    background-color: #4200b3; 
   }
   
   /* Employee List */
@@ -117,12 +124,14 @@ body {
   
   .employee-table th {
     background-color: #f1faee; /* Mint */
-    color: #1d3557; /* Dark Blue */
+    color: #4200b3; /* Dark Blue */
   }
   
   .employee-table tr:hover {
     background-color: #f1faee;
 }
+
+
 
 /* Error Message */
 .error-message {
