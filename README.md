@@ -82,6 +82,18 @@ At the bottom of the dashboard, you will find a list of your recent transactions
 
 To end your session, click the *Logout* button located in the top right corner of the dashboard.
 
+## Updated Code
+
+### Employee Login 
+- The employee login allows the employee to login using their email, password and their role. The user completes the form and click Login.
+Admin Dashboard 
+- The admin dashboard consists of the logo on the top left, then on the right it has admin as well as a logout button. 
+- The Administrator is able to view employees as well as create new employees. When the employee views the list a list of employees is displayed which shows the email and the role of the employee. Then when the administrator creates a new employee, they are able to add the email, password as well as the role then click the add employee button. 
+
+### Employee Dashboard
+- The employee dashboard consists of the logo on the top left, then on the right it has employee as well as a logout button. 
+- The employee dashboard is used to verify the payments. It displays the Account no, the amount, the date, the status as well as the action for the verification process.
+
 ---
 
 ## Thank You
