@@ -13,7 +13,7 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    border: 2px solid #5f5cf8; 
+    border: 2px solid #a8dadc; /* Light Teal */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   }
   
@@ -43,13 +43,13 @@ body {
     width: 40%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    color: #1d3557; 
-    border: 1px solid #457b9d; 
+    color: #1d3557; /* Dark Blue */
+    border: 1px solid #457b9d; /* Steel Blue */
     transition: all 0.3s ease;
   }
   
   .card:hover {
-    background-color: #5f5cf8; 
+    background-color: #e63946; /* Red Hover */
     color: white;
     transform: scale(1.05);
   }
@@ -79,13 +79,13 @@ body {
   .new-employee-form input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #5f5cf8; 
+    border: 1px solid #457b9d; /* Steel Blue */
     border-radius: 5px;
   }
   
   .new-employee-form button {
     padding: 12px;
-    background-color: #5f5cf8; 
+    background-color: #457b9d; /* Steel Blue */
     color: white;
     border: none;
     border-radius: 5px;
@@ -94,7 +94,7 @@ body {
   }
   
   .new-employee-form button:hover {
-    background-color: #5f5cf8; /* Darker Blue */
+    background-color: #1d3557; /* Darker Blue */
   }
   
   /* Employee List */
@@ -124,3 +124,9 @@ body {
     background-color: #f1faee;
 }
 
+/* Error Message */
+.error-message {
+  color: #e63946; /* Red color */
+  font-weight: bold;
+  text-align: center;
+}
