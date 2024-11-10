@@ -136,16 +136,16 @@ const AdminDashboard = () => {
                 <div className="profile">
                     <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
                     <span className="username">Admin</span>
-                    <div
+                    {/* Changed div to button for better accessibility */}
+                    <button
                         className="logout-menu"
                         onClick={handleLogout}
+                        aria-label="Logout"
                         onKeyDown={(e) => e.key === 'Enter' && handleLogout()}
                         tabIndex={0}
-                        role="button"
-                        aria-label="Logout"
                     >
                         Logout
-                    </div>
+                    </button>
                 </div>
             </div>
             <div className="action-cards">
