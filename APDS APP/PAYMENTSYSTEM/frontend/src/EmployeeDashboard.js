@@ -29,7 +29,7 @@ const EmployeeDashboard = () => {
           payment._id === selectedPayment._id ? { ...payment, status: 'Processed' } : payment
         )
       );
-      setSelectedPayment({ ...selectedPayment, status: 'Processed' });
+      setSelectedPayment((prevPayment) => ({ ...prevPayment, status: 'Processed' }));
     } catch (error) {
       console.error('Error verifying payment:', error);
     }
@@ -40,11 +40,12 @@ const EmployeeDashboard = () => {
     setSelectedPayment(null);
   };
 
-  const handleLogout = () => {
-    // Clear any session data (e.g., token, user info) if stored
-    localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
-    window.location.href = '/login'; // Redirect to login page
+  const handleLogout = (event) => {
+    if (event.type === 'click' || event.key === 'Enter') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userEmail');
+      window.location.href = '/login';
+    }
   };
 
   return (
@@ -53,8 +54,15 @@ const EmployeeDashboard = () => {
         <img src="/paysherelogo.jpg" alt="PayShere Logo" className="logo" />
         <div className="profile">
           <img src="/user_icon.jpg" alt="Profile" className="profile-icon" />
-          <span className="username">Employee</span> {/* Update with actual employee name if available */}
-          <div className="logout-menu" onClick={handleLogout}>
+          <span className="username">Employee</span>
+          <div
+            className="logout-menu"
+            onClick={handleLogout}
+            onKeyDown={handleLogout}
+            tabIndex={0}
+            role="button"
+            aria-label="Logout"
+          >
             Logout
           </div>
         </div>
