@@ -58,7 +58,7 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
             <form onSubmit={handlePayment}>
                 {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
                 {success && <p className="success-message" style={{ color: 'green' }}>{success}</p>}
-                <div className="form-group">
+                <div className="pay-group">
                     <label>Amount</label>
                     <input
                         type="number"
@@ -67,7 +67,7 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className="pay-group">
                     <label>Currency</label>
                     <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
                         {currencies.map((currencyOption) => (
@@ -77,7 +77,7 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
+                <div className="pay-group">
                     <label>Account Number</label>
                     <input
                         type="text"
@@ -86,7 +86,7 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
                         required
                     />
                 </div>
-                <div className="form-group">
+                <div className="pay-group">
                     <label>SWIFT Code</label>
                     <input
                         type="text"

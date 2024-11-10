@@ -41,19 +41,19 @@
 
 .logout-menu {
     cursor: pointer;
-    background-color: #43036b; /* Blue color */
-    color: #fff; /* White text */
+    background-color: #5f5cf8; 
+    color: #fff; 
     border: none;
-    padding: 10px 20px; /* Padding for a button look */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 14px; /* Adjust font size */
-    font-weight: bold; /* Bold text */
-    transition: background-color 0.3s; /* Smooth transition */
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-size: 14px; 
+    font-weight: bold; 
+    transition: background-color 0.3s; 
 }
 
 .logout-menu:hover {
-    background-color: #4200b3; /* Darker blue on hover */
+    background-color: #4200b3; 
 }
 
 .action-cards {
@@ -90,9 +90,9 @@
 }
 
 table {
-    width: 100%; /* Full width for the table */
-    max-width: 1200px; /* Set a maximum width */
-    margin: 0 auto; /* Center the table */
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #fff;
