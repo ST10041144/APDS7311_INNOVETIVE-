@@ -1,4 +1,4 @@
-name: SonarQube Analysis
+name: SonarCloud Analysis
 
 on:
   push:
@@ -22,8 +22,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run SonarQube Scanner
-        run: npm run sonar
+      - name: Run SonarCloud Scanner
         env:
-          SONAR_HOST_URL: http://localhost:9000
-          SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ '3c06387dfb429ca4857d04ff86532bbc60476530' }}
+        run: |
+          npx sonarqube-scanner \
+            -Dsonar.projectKey=ST10073908_APDS7311_INNOVETIVE- \
+            -Dsonar.organization=PayShere \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=3c06387dfb429ca4857d04ff86532bbc60476530

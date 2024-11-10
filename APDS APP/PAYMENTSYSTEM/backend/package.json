@@ -6,8 +6,7 @@
   "scripts": {
     "Start": "node index.js",
     "dev": "nodemon index.js",
-    "sonar": "sonarqube-scanner"
-
+    "sonar": "npx sonarqube-scanner"
   },
   "keywords": [],
   "author": "",
