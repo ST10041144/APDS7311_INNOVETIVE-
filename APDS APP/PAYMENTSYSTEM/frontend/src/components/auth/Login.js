@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../Login.css'; 
+import '../../Login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,18 +14,18 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-    
+
         try {
             const response = await axios.post("/api/auth/login", {
                 email,
                 accountnumber: isEmployee ? '' : accountnumber,
                 password,
             });
-    
+
             const { token, role } = response.data;
             localStorage.setItem('token', token);
             localStorage.setItem('userEmail', email);
-    
+
             // Redirect based on the role received from the backend
             if (role === 'Employee') {
                 navigate('/employeeDash');
@@ -35,14 +35,12 @@ function Login() {
                 navigate('/dashboard');
             }
         } catch (err) {
-            if (err.response && err.response.data.message) {
-                setError(err.response.data.message);
-            } else {
-                setError('Something went wrong. Please try again.');
-            }
+            // Optional chaining for error handling
+            const errorMessage = err.response?.data?.message || 'Something went wrong. Please try again.';
+            setError(errorMessage);
         }
     };
-    
+
     const handleEmailChange = (e) => {
         const email = e.target.value;
         setEmail(email);
@@ -97,10 +95,30 @@ function Login() {
                     {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
                     <button className="login-btn" type="submit">Login</button>
                 </form>
-                <p className="register-link" onClick={() => navigate('/register')} style={{ cursor: 'pointer' }} tabIndex="0">
+                <p
+                    className="register-link"
+                    onClick={() => navigate('/register')}
+                    style={{ cursor: 'pointer' }}
+                    tabIndex="0"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            navigate('/register');  // Navigates on Enter or Space
+                        }
+                    }}
+                >
                     New Customer? Register here
                 </p>
-                <p className="Login-btnEmp" onClick={() => navigate('/loginEmp')} style={{ cursor: 'pointer' }} tabIndex="0">
+                <p
+                    className="Login-btnEmp"
+                    onClick={() => navigate('/loginEmp')}
+                    style={{ cursor: 'pointer' }}
+                    tabIndex="0"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            navigate('/loginEmp');  // Navigates on Enter or Space
+                        }
+                    }}
+                >
                     Employee? Login here
                 </p>
             </div>
