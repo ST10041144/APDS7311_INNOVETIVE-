@@ -35,7 +35,7 @@ function Login() {
                 navigate('/dashboard');
             }
         } catch (err) {
-            // Use optional chaining to access error messages
+            // chaining to access error messages
             const errorMessage = err.response?.data?.message || 'Something went wrong. Please try again.';
             setError(errorMessage);
         }

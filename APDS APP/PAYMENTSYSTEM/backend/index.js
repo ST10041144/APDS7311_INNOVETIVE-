@@ -9,12 +9,11 @@ import morgan from 'morgan';
 import connectDB from './db/conn.js';
 import authRoutes from './Routes/auth.js';
 import paymentRoutes from './Routes/payment.js';
-//import transactionRoutes from './Routes/transaction.js';
-import { ensureSSL } from './middleware/sslMiddleware.js'; // Import SSL middleware
-import employeeRoutes from './Routes/employee.js'; // Adjust the path as needed
+import { ensureSSL } from './middleware/sslMiddleware.js'; 
+import employeeRoutes from './Routes/employee.js'; 
 
 
-dotenv.config(); // Ensure dotenv is loaded before using process.env
+dotenv.config(); 
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,7 +30,7 @@ app.use(cors({
 app.use(helmet());
 app.use(morgan('combined'));
 
-// Apply SSL redirection middleware (optional: only in production)
+// Apply SSL redirection middleware 
 if (process.env.NODE_ENV === 'production') {
    app.use(ensureSSL);  // Redirect HTTP to HTTPS
 }
@@ -40,7 +39,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/payment', paymentRoutes); // Payment routes
 app.use('/api/employees', employeeRoutes); // Add employees
-//app.use('/api/transaction', transactionRoutes); // Transaction routes
 
 // SSL CERTIFICATE and KEY
 const httpsOptions = {

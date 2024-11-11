@@ -29,7 +29,7 @@ function LoginEmp() {
                 navigate('/employeeDash'); // Employee Dashboard
             }
         } catch (err) {
-            // Optional chaining for cleaner error handling
+            // chaining for cleaner error handling
             const errorMessage = err.response?.data?.message || 'Something went wrong. Please try again.';
             setError(errorMessage);
         }
@@ -75,7 +75,7 @@ function LoginEmp() {
                     className="emp-register-link"
                     onClick={() => navigate('/register')}
                     style={{ cursor: 'pointer' }}
-                    tabIndex={0}  // Makes the element focusable for keyboard navigation
+                    tabIndex={0}  // Makes the element focusable 
                     onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             navigate('/register');  // Navigates on Enter or Space

@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff; /* Alice Blue */
+    background-color: #f0f8ff; 
     margin: 0;
     padding: 0;
   }
@@ -25,7 +25,7 @@ body {
   
   h1 {
     font-size: 2.2rem;
-    color: #1d3557; /* Dark Blue */
+    color: #1d3557; 
   }
   
   /* Action Cards */
@@ -36,14 +36,14 @@ body {
   }
   
   .card {
-    background-color: #f1faee; /* Mint */
+    background-color: #f1faee; 
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 40%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-decoration: none;
-    color: #1d3557; /* Dark Blue */
+    color: #1d3557; 
     border: 1px solid #4200b3; 
     transition: all 0.3s ease;
   }
@@ -123,8 +123,8 @@ body {
   }
   
   .employee-table th {
-    background-color: #f1faee; /* Mint */
-    color: #4200b3; /* Dark Blue */
+    background-color: #f1faee; 
+    color: #4200b3; 
   }
   
   .employee-table tr:hover {
@@ -135,7 +135,7 @@ body {
 
 /* Error Message */
 .error-message {
-  color: #e63946; /* Red color */
+  color: #e63946; 
   font-weight: bold;
   text-align: center;
 }

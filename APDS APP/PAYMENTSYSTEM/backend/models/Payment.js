@@ -25,7 +25,7 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     default: 'Pending',
   },
-  userEmail: { // Add userEmail to track payments by user
+  userEmail: { 
     type: String,
     required: true,
   },

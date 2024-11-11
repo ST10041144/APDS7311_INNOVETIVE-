@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../Register.css'; // Assuming you have a CSS file for styles
+import '../../Register.css'; 
 
 function Register() {
     const [fullName, setFullName] = React.useState('');
@@ -29,7 +29,7 @@ function Register() {
                 accountNumber,
                 email,
                 password,
-                confirmPassword, // Optional; you can remove this line as it's not needed for the API
+                confirmPassword, 
             });
 
             if (response.status === 201) {

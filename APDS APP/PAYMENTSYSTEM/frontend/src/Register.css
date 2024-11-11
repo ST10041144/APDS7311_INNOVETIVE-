@@ -25,16 +25,16 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    position: relative; /* Ensure the navbar stays within the form-side container */
+    position: relative; 
 }
 
-/* Updated Navbar Styling */
+/* Navbar Styling */
 .navbar {
     position: absolute;
     top: 20px;
     right: 20px;
     display: flex;
-    gap: 10px; /* Add space between the buttons */
+    gap: 10px; 
 }
 
 .navbar button {

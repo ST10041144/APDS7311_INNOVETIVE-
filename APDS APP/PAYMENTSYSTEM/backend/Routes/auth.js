@@ -2,15 +2,10 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js'; 
-import { validatePaymentInput } from '../middleware/paymentValidationMiddleware.js';
 import { check, validationResult } from 'express-validator';
 import { paymentRateLimiter, speedLimiter } from '../middleware/rateLimitMiddleware.js';
 import { ensureSSL } from '../middleware/sslMiddleware.js';
-import Employee from '../models/Employee.js'; // Adjust path if necessary
-
-// import users from '../config.js'; 
-
-
+import Employee from '../models/Employee.js'; 
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;

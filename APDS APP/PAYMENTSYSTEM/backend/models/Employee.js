@@ -6,21 +6,21 @@ const employeeSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true, // Ensures email is unique
-      trim: true, // Trims leading/trailing whitespace
+      unique: true, 
+      trim: true, 
     },
     password: {
       type: String,
-      required: true, // Ensures password is required
+      required: true, 
     },
     role: {
       type: String,
-      enum: ['Admin', 'Employee', 'Customer'], // Defines allowed roles
-      default: 'Employee', // Default role is Employee
+      enum: ['Admin', 'Employee', 'Customer'], 
+      default: 'Employee', 
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true, 
   }
 );
 

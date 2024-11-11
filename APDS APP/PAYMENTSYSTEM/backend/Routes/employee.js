@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/fetch', async (req, res) => {
     try {
         const employees = await Employee.find(); // Fetch all employees
-        res.status(200).json(employees); // Return as JSON
+        res.status(200).json(employees); 
     } catch (error) {
         res.status(500).json({ message: 'Error fetching employees', error });
     }
@@ -47,7 +47,7 @@ router.post('/newEmployee', async (req, res) => {
         }
 
         // Hash the password before saving
-        const saltRounds = 10; // You can adjust the salt rounds for hashing complexity
+        const saltRounds = 10; 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Create a new employee with the hashed password
@@ -62,7 +62,7 @@ router.post('/newEmployee', async (req, res) => {
 
         // Exclude password in the response
         const { password: _, ...employeeData } = newEmployee.toObject();
-        res.status(201).json(employeeData); // Return the created employee without the password
+        res.status(201).json(employeeData); 
     } catch (error) {
         console.error("Error adding employee:", error);
         res.status(500).json({ message: 'Error adding employee', error });

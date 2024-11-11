@@ -4,20 +4,20 @@ const userSchema = new mongoose.Schema({
     fullName: {
         type: String,
         trim: true,
-        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
+        required: function() { return this.role !== 'superAdmin'; } 
     },
     idNumber: {
         type: String,
         trim: true,
         match: [/^\d{10,15}$/, 'idNumber must be between 10 and 15 digits'],
-        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
+        required: function() { return this.role !== 'superAdmin'; } 
     },
     accountNumber: {
         type: String,
         unique: true,
         trim: true,
         match: [/^\d{10,12}$/, 'accountNumber must be between 10 and 12 digits'],
-        required: function() { return this.role !== 'superAdmin'; } // Only required for non-superAdmin users
+        required: function() { return this.role !== 'superAdmin'; } 
     },
     email: {
         type: String,

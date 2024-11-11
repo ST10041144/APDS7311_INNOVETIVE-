@@ -25,10 +25,6 @@ console.log('MONGO_URI:', process.env.MONGO_URI);
 // Create an HTTPS server
 const httpsServer = https.createServer(credentials, app);
 
-// Serve the app over HTTPS
-// httpsServer.listen(process.env.HTTPS_PORT || 443, () => {
-//   console.log(`HTTPS Server running on port ${process.env.HTTPS_PORT || 443}`);
-// });
 
 //rate limit vaues
 export const rateLimitConfig = {

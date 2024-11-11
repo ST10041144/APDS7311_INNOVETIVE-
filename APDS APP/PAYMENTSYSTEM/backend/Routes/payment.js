@@ -14,7 +14,7 @@ router.post(
     body('provider').isString().withMessage('Provider is required'),
     body('accountNumber').isString().withMessage('Account number is required'),
     body('swiftCode').isString().withMessage('SWIFT code is required'),
-    body('userEmail').isString().withMessage('User email is required'), // Adding userEmail validation
+    body('userEmail').isString().withMessage('User email is required'), 
   ],
   validatePayment,
   async (req, res) => {
@@ -34,7 +34,7 @@ router.post(
         accountNumber,
         swiftCode,
         status: 'Pending',
-        userEmail, // Store user's email
+        userEmail, 
       });
 
       await payment.save();
