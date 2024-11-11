@@ -23,3 +23,9 @@ export const validatePaymentInput = (req, res, next) => {
     next();
 };
 export default validatePaymentInput;
+
+// Code Attribution 
+// This code was referenced from expressjs 
+// https://expressjs.com/en/guide/using-middleware.html
+// Author name expressjs 
+// Using middleware (expressjs.com)

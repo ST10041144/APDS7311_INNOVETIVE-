@@ -31,3 +31,9 @@ const authorizeRoles = (roles) => {
 };
 
 module.exports = authorizeRoles;
+
+// Code Attribution 
+// This code was referenced from expressjs 
+// https://expressjs.com/en/guide/using-middleware.html
+// Author name expressjs 
+// Using middleware (expressjs.com)

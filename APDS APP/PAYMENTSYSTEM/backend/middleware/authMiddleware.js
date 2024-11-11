@@ -48,3 +48,9 @@ const authMiddleware = (req, res, next) => {
 };
 
 export default authMiddleware;
+
+// Code Attribution 
+// This code was referenced from geeksforgeeks 
+// https://www.geeksforgeeks.org/middleware-in-express-js/ 
+// Author name _mukul_ 
+// Middleware in Express (geeksforgeeks.org)

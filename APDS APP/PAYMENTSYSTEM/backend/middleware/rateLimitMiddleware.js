@@ -34,3 +34,9 @@ export const paymentRateLimiter = rateLimit({
         res.status(options.statusCode).json({ message: options.message });
     }
 });
+
+// Code Attribution 
+// This code was referenced from GitHub 
+// https://github.com/express-rate-limit/express-rate-limit
+// Author name express-rate-limit 
+// express-tare-limit (github.com)

@@ -21,3 +21,9 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+
+// Code Attribution 
+// This code was referenced from MongooseJS
+// https://mongoosejs.com/docs/guide.html
+// Author name MongooseJS
+// Schemas (mongoosejs.com)
