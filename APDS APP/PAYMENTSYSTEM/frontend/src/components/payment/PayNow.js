@@ -128,3 +128,15 @@ const PayNow = ({ onPaymentSuccess, userEmail }) => {
 };
 
 export default PayNow;
+
+// Code Attribution 
+// This code was referenced from reactjs
+// https://legacy.reactjs.org/docs/hooks-effect.html
+// Author name reactjs
+// Using the Effect Hook (reactjs.org)
+
+// Code Attribution 
+// This code was referenced from mdn web docs 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+// Author name mdm web docs 
+// async function (mozilla.org)

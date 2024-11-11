@@ -90,3 +90,9 @@ function LoginEmp() {
 }
 
 export default LoginEmp;
+
+// Code Attribution 
+// This code was referenced from freeCodeCamp
+// https://www.freecodecamp.org/news/what-are-controlled-and-uncontrolled-components-in-react/
+// Author name Jan Ayebola
+// What are Controlled and Uncontrolled Components in React.js? (freecodecamp.org)

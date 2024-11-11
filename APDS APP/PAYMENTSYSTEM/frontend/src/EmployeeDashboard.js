@@ -126,3 +126,9 @@ const EmployeeDashboard = () => {
 };
 
 export default EmployeeDashboard;
+
+// Code Attribution 
+// This code was referenced from reactjs
+// https://legacy.reactjs.org/docs/hooks-effect.html
+// Author name reactjs
+// Using the Effect Hook (reactjs.org)

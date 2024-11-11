@@ -126,3 +126,9 @@ function Login() {
 }
 
 export default Login;
+
+// Code Attribution 
+// This code was referenced from mdn web docs 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+// Author name mdm web docs 
+// async function (mozilla.org)
